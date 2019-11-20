@@ -1,38 +1,28 @@
+import Car from './car'
+import Bulbasaur from './bulbasaur'
+
 class BulbasaurAdventure {
     constructor(canvas){
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height }; 
-        this.upPressed = false;
-        this.downPressed = false;
-        this.leftPressed = false;
-        this.rightPressed = false;
-        this.up = true;
-        this.down = true;
-        this.right = true;
-        this.left = true;
-        this.sx = 0
-        this.sy = 0
-        this.x = 500;
-        this.y = 650
-
+        this.car = new Car(this.ctx, this.dimensions)
+        this.bulbasaur = new Bulbasaur(this.ctx, this.dimensions)
         this.draw();
-        this.handleKeyDown = this.handleKeyDown.bind(this);
-        this.handleKeyUp = this.handleKeyUp.bind(this);
 
     }
 
     drawBackground() {
         this.ctx.fillStyle = '#c2b280';
-        this.ctx.fillRect(0, 0, 1000, 60);
-        this.ctx.fillRect(0, 330, 1000, 30);
-        this.ctx.fillRect(0, 660, 1000, 40);
+        this.ctx.fillRect(0, 0, 1090, 65);
+        this.ctx.fillRect(0, 330, 1090, 30);
+        this.ctx.fillRect(0, 660, 1090, 40);
 
         this.ctx.fillStyle = '#474a51'
-        this.ctx.fillRect(0, 360, 1000, 300)
+        this.ctx.fillRect(0, 360, 1090, 300)
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 375);
-        this.ctx.lineTo(1000, 375);
+        this.ctx.lineTo(1090, 375);
         this.ctx.strokeStyle = "white";
         this.ctx.setLineDash([100, 5]);
         this.ctx.lineWidth = 5;
@@ -40,7 +30,7 @@ class BulbasaurAdventure {
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 645);
-        this.ctx.lineTo(1000, 645);
+        this.ctx.lineTo(1090, 645);
         this.ctx.strokeStyle = "white";
         this.ctx.setLineDash([100, 5]);
         this.ctx.lineWidth = 5;
@@ -48,7 +38,7 @@ class BulbasaurAdventure {
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 429);
-        this.ctx.lineTo(1000, 429);
+        this.ctx.lineTo(1090, 429);
         this.ctx.strokeStyle = "white";
         this.ctx.setLineDash([50, 30]);
         this.ctx.lineWidth = 2;
@@ -56,7 +46,7 @@ class BulbasaurAdventure {
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 483);
-        this.ctx.lineTo(1000, 483);
+        this.ctx.lineTo(1090, 483);
         this.ctx.strokeStyle = "white";
         this.ctx.setLineDash([50, 30]);
         this.ctx.lineWidth = 2;
@@ -64,7 +54,7 @@ class BulbasaurAdventure {
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 537);
-        this.ctx.lineTo(1000, 537);
+        this.ctx.lineTo(1090, 537);
         this.ctx.strokeStyle = "white";
         this.ctx.setLineDash([50, 30]);
         this.ctx.lineWidth = 2;
@@ -72,26 +62,39 @@ class BulbasaurAdventure {
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 591);
-        this.ctx.lineTo(1000, 591);
+        this.ctx.lineTo(1090, 591);
         this.ctx.strokeStyle = "white";
         this.ctx.setLineDash([50, 30]);
         this.ctx.lineWidth = 2;
         this.ctx.stroke();
 
         this.ctx.fillStyle = "#0c7ecf"
-        this.ctx.fillRect(0, 60, 1000, 270)
+        this.ctx.fillRect(0, 65, 1090, 270)
 
     }
 
     drawBush() {   
         const bush = new Image();
-        bush.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/bush.png"    
-        this.ctx.drawImage(bush, -75, -5, 150, 75)
-        this.ctx.drawImage(bush, 120, -5, 150, 75)
-        this.ctx.drawImage(bush, 325, -5, 150, 75)
-        this.ctx.drawImage(bush, 525, -5, 150, 75)
-        this.ctx.drawImage(bush, 725, -5, 150, 75)
-        this.ctx.drawImage(bush, 925, -5, 150, 75)
+        bush.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/bush_sprite.png"
+        this.ctx.drawImage(bush, 0, 0, 70, 70, -30, -20, 90, 105)
+        this.ctx.drawImage(bush, 70, 0, 70, 70, 30, -65, 90, 100)
+        this.ctx.drawImage(bush, 140, 0, 70, 70, 90, -20, 90, 105)
+        this.ctx.drawImage(bush, 210, 0, 70, 70, 150, -20, 90, 105)
+        this.ctx.drawImage(bush, 280, 0, 70, 70, 210, -20, 90, 105)
+        this.ctx.drawImage(bush, 350, 0, 70, 70, 270, -65, 90, 100)
+        this.ctx.drawImage(bush, 0, 0, 70, 70, 330, -20, 90, 105)
+        this.ctx.drawImage(bush, 70, 0, 70, 70, 390, -20, 90, 105)
+        this.ctx.drawImage(bush, 140, 0, 70, 70, 450, -20, 90, 105)
+        this.ctx.drawImage(bush, 210, 0, 70, 70, 510, -65, 90, 100)
+        this.ctx.drawImage(bush, 280, 0, 70, 70, 570, -20, 90, 105)
+        this.ctx.drawImage(bush, 350, 0, 70, 70, 630, -20, 90, 105)
+        this.ctx.drawImage(bush, 0, 0, 70, 70, 690, -20, 90, 105)
+        this.ctx.drawImage(bush, 70, 0, 70, 70, 750, -65, 90, 100)
+        this.ctx.drawImage(bush, 140, 0, 70, 70, 810, -20, 90, 105)
+        this.ctx.drawImage(bush, 210, 0, 70, 70, 870, -20, 90, 105)
+        this.ctx.drawImage(bush, 280, 0, 70, 70, 930, -20, 90, 105)
+        this.ctx.drawImage(bush, 350, 0, 70, 70, 990, -65, 90, 100)
+        this.ctx.drawImage(bush, 0, 0, 70, 70, 1050, -20, 90, 105)
     }
 
     drawGrass() {
@@ -113,11 +116,6 @@ class BulbasaurAdventure {
         this.ctx.drawImage(grass, 950, 645, 35, 30)
     }
 
-    drawBulbasaur() {
-        const bulbasaur = new Image();
-        bulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/bulbasaur.png"
-        this.ctx.drawImage(bulbasaur, this.sx, this.sy, 24, 25, this.x, this.y, 50, 50)
-    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
@@ -125,58 +123,41 @@ class BulbasaurAdventure {
         this.drawBackground();
         this.drawBush();
         this.drawGrass();
-        this.drawBulbasaur();
-        this.move();
+        this.bulbasaur.move();
+        this.bulbasaur.drawBulbasaur();
+        this.car.drawCars()
+        this.car.move();
+        this.collision();
         requestAnimationFrame(this.draw.bind(this));
     }
 
     registerEvents() {
-        document.addEventListener("keydown", this.handleKeyDown, false);
-        document.addEventListener("keyup", this.handleKeyUp, false)
-    }
-
-    move() {
-        if (this.upPressed && this.up) {
-            this.y = this.y - 27;
-            this.up = false
-        }
-        if (this.upPressed === false) {
-            this.up = true
-        }
+        document.addEventListener("keydown", this.bulbasaur.handleKeyDown.bind(this), false);
+        document.addEventListener("keyup", this.bulbasaur.handleKeyUp.bind(this), false)
     }
 
 
-    handleKeyDown(e) {
-       
-        if (e.keyCode === 97 || e.keyCode === 38) {
-            this.upPressed = true;
+    collision() {
+        const carsX = Object.values(this.car.carsX)
+        const carsY = Object.values(this.car.carsY)
+        
+        let i;
+        for (i = 0; i < carsX.length; i++ ) {
+            if (carsX[i] <= this.bulbasaur.x + 50 && 
+                carsX[i] + this.car.carWidth >= this.bulbasaur.x &&
+                carsY[i] + 50 >= this.bulbasaur.y &&
+                carsY[i] <= this.bulbasaur.y) {
+                this.bulbasaur.sx = 0
+                this.bulbasaur.x = 500
+                this.bulbasaur.y = 650
+            }
+
         }
-        if (e.keyCode === 83 || e.keyCode === 40) {
-            this.downPressed = true;
-        }
-        if (e.keyCode === 65 || e.keyCode === 37) {
-            this.leftPressed = true;
-        }
-        if (e.keyCode === 68 || e.keyCode === 39) {
-            this.rightPressed = true;
-        }
+
+
     }
 
-    handleKeyUp(e) {
-        if (e.keyCode === 38 || e.keyCode === 97) {
-            this.upPressed = false;
-        }
-        if (e.keyCode === 83 || e.keyCode === 40) {
-            this.downPressed = false;
-        }
-        if (e.keyCode === 65 || e.keyCode === 37) {
-            this.leftPressed = false;
-        }
-        if (e.keyCode === 68 || e.keyCode === 39) {
-            this.rightPressed = false;
-        }
-    }
-
+    
     gameOver() {
     
     }
