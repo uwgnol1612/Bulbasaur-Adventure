@@ -1,6 +1,7 @@
 import Car from './car'
 import Bulbasaur from './bulbasaur'
 import Log from './log'
+import Base from './base'
 
 class BulbasaurAdventure {
     constructor(canvas){
@@ -9,6 +10,7 @@ class BulbasaurAdventure {
         this.car = new Car(this.ctx, this.dimensions)
         this.bulbasaur = new Bulbasaur(this.ctx, this.dimensions)
         this.log = new Log(this.ctx, this.dimensions)
+        this.base = new Base(this.ctx)
         this.draw();
 
     }
@@ -127,8 +129,10 @@ class BulbasaurAdventure {
         this.registerEvents();
 
         this.drawBackground();
-        this.drawBush();
+        
         this.drawGrass();
+        this.base.drawBases();
+        this.drawBush();
      
         this.car.drawCars();
         this.car.moveCars();
@@ -171,7 +175,6 @@ class BulbasaurAdventure {
     float() {
         const logsX = Object.values(this.log.logsX)
         const logsY = Object.values(this.log.logsY)
-
         const logsXKeys = Object.keys(this.log.logsX)
 
         let i;
@@ -185,19 +188,19 @@ class BulbasaurAdventure {
                         
                         if (['logX1', 'logX2'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x < this.dimensions.width - 50) {
-                                this.bulbasaur.x = this.bulbasaur.x + 3 }
+                                this.bulbasaur.x = this.bulbasaur.x + this.log.mediumSpeed }
                                 return 
                         } else if (['logX5', 'logX6'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x < this.dimensions.width - 50) {
-                                this.bulbasaur.x = this.bulbasaur.x + 2 }
+                                this.bulbasaur.x = this.bulbasaur.x + this.log.lowSpeed }
                                 return 
                         } else if (['logX3', 'logX4'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x > 0) {
-                                this.bulbasaur.x = this.bulbasaur.x - 3 }
+                                this.bulbasaur.x = this.bulbasaur.x - this.log.mediumSpeed }
                                 return 
                         } else if (['logX7', 'logX8'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x > 0) {
-                                this.bulbasaur.x = this.bulbasaur.x - 2 }
+                                this.bulbasaur.x = this.bulbasaur.x - this.log.lowSpeed }
                                 return
                         } 
                 

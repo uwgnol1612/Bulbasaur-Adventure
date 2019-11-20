@@ -23,6 +23,8 @@ class Log {
                     };
         this.logWidth = 270;
         this.logHeight = 85
+        this.lowSpeed = 2
+        this.mediumSpeed = 3
     }
 
     drawLogs() {
@@ -41,25 +43,25 @@ class Log {
         ['logX1', 'logX2', 'logX5', 'logX6', 'logX3', 'logX4', 'logX7', 'logX8'].forEach(logX => {
             if (['logX1', 'logX2'].includes(logX)) {
                 if (this.logsX[logX] < this.dimensions.width + 100) {
-                    this.logsX[logX] = this.logsX[logX] + 3
+                    this.logsX[logX] = this.logsX[logX] + this.mediumSpeed
                 } else {
                     this.logsX[logX] = -this.logWidth
                 }
             } else if (['logX5', 'logX6'].includes(logX)){
                 if (this.logsX[logX] < this.dimensions.width + 100) {
-                    this.logsX[logX] = this.logsX[logX] + 2
+                    this.logsX[logX] = this.logsX[logX] + this.lowSpeed
                 } else {
                     this.logsX[logX] = -this.logWidth
                 }
             } else if (['logX3', 'logX4'].includes(logX)) {
                 if (this.logsX[logX] > -this.logWidth) {
-                    this.logsX[logX] = this.logsX[logX] - 3
+                    this.logsX[logX] = this.logsX[logX] - this.mediumSpeed
                 } else {
                     this.logsX[logX] = this.dimensions.width + 100
                 }
             } else {
                 if (this.logsX[logX] > -this.logWidth) {
-                    this.logsX[logX] = this.logsX[logX] - 2
+                    this.logsX[logX] = this.logsX[logX] - this.lowSpeed
                 } else {
                     this.logsX[logX] = this.dimensions.width + 100
                 }
