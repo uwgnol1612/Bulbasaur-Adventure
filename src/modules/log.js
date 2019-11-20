@@ -12,24 +12,24 @@ class Log {
                         logX8: 500
                    
                     }
-        this.logsY = { logY1: 45, 
-                       logY2: 45, 
+        this.logsY = { logY1: 50, 
+                       logY2: 50, 
                        logY3: 110, 
                        logY4: 110, 
-                       logY5: 175, 
-                       logY6: 175, 
-                       logY7: 240, 
-                       logY8: 240
+                       logY5: 170, 
+                       logY6: 170, 
+                       logY7: 235, 
+                       logY8: 235
                     };
         this.logWidth = 270;
-        this.logHeight = 90
+        this.logHeight = 85
     }
 
     drawLogs() {
         const log = new Image();
         log.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/logs.png"
         let i; 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 10; i++) {
             this.ctx.drawImage(log, Object.values(this.logsX)[i], Object.values(this.logsY)[i], this.logWidth, this.logHeight)
         }
         

@@ -175,56 +175,47 @@ class BulbasaurAdventure {
         const logsXKeys = Object.keys(this.log.logsX)
 
         let i;
-        for (i = 0; i < logsX.length; i++ ) {
+         
+            for (i = 0; i < logsX.length; i++ ) {
            
-                if (['logX1', 'logX2'].includes(logsXKeys[i])) {
-                    if (logsX[i] <= this.bulbasaur.x &&
-                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
-                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
-                        logsY[i] <= this.bulbasaur.y) {
+                if (logsX[i] <= this.bulbasaur.x &&
+                    logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
+                    logsY[i] + this.log.logHeight > this.bulbasaur.y && 
+                    logsY[i] <= this.bulbasaur.y) {
+                        
+                        if (['logX1', 'logX2'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x < this.dimensions.width - 50) {
                                 this.bulbasaur.x = this.bulbasaur.x + 3 }
-                    } 
-
-                } else if (['logX5', 'logX6'].includes(logsXKeys[i])) {
-                    if (logsX[i] <= this.bulbasaur.x &&
-                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
-                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
-                        logsY[i] <= this.bulbasaur.y) {
+                                return 
+                        } else if (['logX5', 'logX6'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x < this.dimensions.width - 50) {
                                 this.bulbasaur.x = this.bulbasaur.x + 2 }
-                    } 
-
-                } else if (['logX3', 'logX4'].includes(logsXKeys[i])) {
-                    if (logsX[i] <= this.bulbasaur.x &&
-                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
-                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
-                        logsY[i] <= this.bulbasaur.y) {
+                                return 
+                        } else if (['logX3', 'logX4'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x > 0) {
                                 this.bulbasaur.x = this.bulbasaur.x - 3 }
-                    } 
-
-                } else if (['logX7', 'logX8'].includes(logsXKeys[i])) {
-                    if (logsX[i] <= this.bulbasaur.x &&
-                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
-                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
-                        logsY[i] <= this.bulbasaur.y) {
+                                return 
+                        } else if (['logX7', 'logX8'].includes(logsXKeys[i])) {
                             if (this.bulbasaur.x > 0) {
                                 this.bulbasaur.x = this.bulbasaur.x - 2 }
-
-                    } 
+                                return
+                        } 
                 
-                } else if (this.bulbasaur.y < 330) {
-                    this.bulbasaur.sx = 0
-                    this.bulbasaur.x = 500
-                    this.bulbasaur.y = 650
                 } 
+
+            } 
+            if (this.bulbasaur.y < 320 && this.bulbasaur.y > 65) {
+                        this.bulbasaur.sx = 0
+                        this.bulbasaur.x = 500
+                        this.bulbasaur.y = 650 
             }
+            
+        
 
        
     }
 
-    
+
     gameOver() {
     
     }
