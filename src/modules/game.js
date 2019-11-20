@@ -1,5 +1,6 @@
 import Car from './car'
 import Bulbasaur from './bulbasaur'
+import Log from './log'
 
 class BulbasaurAdventure {
     constructor(canvas){
@@ -7,15 +8,19 @@ class BulbasaurAdventure {
         this.dimensions = { width: canvas.width, height: canvas.height }; 
         this.car = new Car(this.ctx, this.dimensions)
         this.bulbasaur = new Bulbasaur(this.ctx, this.dimensions)
+        this.log = new Log(this.ctx, this.dimensions)
         this.draw();
 
     }
 
     drawBackground() {
-        this.ctx.fillStyle = '#c2b280';
+        this.ctx.fillStyle = '#9b7653';
         this.ctx.fillRect(0, 0, 1090, 65);
         this.ctx.fillRect(0, 330, 1090, 30);
         this.ctx.fillRect(0, 660, 1090, 40);
+
+        this.ctx.fillStyle ='#4b8b3b';
+        this.ctx.fillRect(0, 0, 1090, 18)
 
         this.ctx.fillStyle = '#474a51'
         this.ctx.fillRect(0, 360, 1090, 300)
@@ -99,7 +104,7 @@ class BulbasaurAdventure {
 
     drawGrass() {
         const grass = new Image();
-        grass.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/grass.png"
+        grass.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/grass_sprite.png"
         this.ctx.drawImage(grass, 100, 335, 35, 30)
         this.ctx.drawImage(grass, 130, 335, 35, 30)
         this.ctx.drawImage(grass, 300, 335, 35, 30)
@@ -120,14 +125,21 @@ class BulbasaurAdventure {
     draw() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
         this.registerEvents();
+
         this.drawBackground();
         this.drawBush();
         this.drawGrass();
+     
+        this.car.drawCars();
+        this.car.moveCars();
+        this.collision();
+        this.log.drawLogs();
+        this.log.moveLogs();
+        this.float();
+
         this.bulbasaur.move();
         this.bulbasaur.drawBulbasaur();
-        this.car.drawCars()
-        this.car.move();
-        this.collision();
+
         requestAnimationFrame(this.draw.bind(this));
     }
 
@@ -154,7 +166,62 @@ class BulbasaurAdventure {
 
         }
 
+    }
 
+    float() {
+        const logsX = Object.values(this.log.logsX)
+        const logsY = Object.values(this.log.logsY)
+
+        const logsXKeys = Object.keys(this.log.logsX)
+
+        let i;
+        for (i = 0; i < logsX.length; i++ ) {
+           
+                if (['logX1', 'logX2'].includes(logsXKeys[i])) {
+                    if (logsX[i] <= this.bulbasaur.x &&
+                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
+                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
+                        logsY[i] <= this.bulbasaur.y) {
+                            if (this.bulbasaur.x < this.dimensions.width - 50) {
+                                this.bulbasaur.x = this.bulbasaur.x + 3 }
+                    } 
+
+                } else if (['logX5', 'logX6'].includes(logsXKeys[i])) {
+                    if (logsX[i] <= this.bulbasaur.x &&
+                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
+                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
+                        logsY[i] <= this.bulbasaur.y) {
+                            if (this.bulbasaur.x < this.dimensions.width - 50) {
+                                this.bulbasaur.x = this.bulbasaur.x + 2 }
+                    } 
+
+                } else if (['logX3', 'logX4'].includes(logsXKeys[i])) {
+                    if (logsX[i] <= this.bulbasaur.x &&
+                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
+                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
+                        logsY[i] <= this.bulbasaur.y) {
+                            if (this.bulbasaur.x > 0) {
+                                this.bulbasaur.x = this.bulbasaur.x - 3 }
+                    } 
+
+                } else if (['logX7', 'logX8'].includes(logsXKeys[i])) {
+                    if (logsX[i] <= this.bulbasaur.x &&
+                        logsX[i] + this.log.logWidth >= this.bulbasaur.x &&
+                        logsY[i] + this.log.logHeight >= this.bulbasaur.y && 
+                        logsY[i] <= this.bulbasaur.y) {
+                            if (this.bulbasaur.x > 0) {
+                                this.bulbasaur.x = this.bulbasaur.x - 2 }
+
+                    } 
+                
+                } else if (this.bulbasaur.y < 330) {
+                    this.bulbasaur.sx = 0
+                    this.bulbasaur.x = 500
+                    this.bulbasaur.y = 650
+                } 
+            }
+
+       
     }
 
     
