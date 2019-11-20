@@ -12,7 +12,6 @@ class BulbasaurAdventure {
         this.log = new Log(this.ctx, this.dimensions)
         this.base = new Base(this.ctx)
         this.draw();
-
     }
 
     drawBackground() {
@@ -144,6 +143,9 @@ class BulbasaurAdventure {
         this.bulbasaur.move();
         this.bulbasaur.drawBulbasaur();
 
+        this.reachBase();
+        this.onBase();
+
         requestAnimationFrame(this.draw.bind(this));
     }
 
@@ -212,10 +214,41 @@ class BulbasaurAdventure {
                         this.bulbasaur.x = 500
                         this.bulbasaur.y = 650 
             }
-            
-        
-
        
+    }
+
+    reachBase() {
+        const basesX = Object.values(this.base.basesX)
+        let i;
+        for (i = 0; i < basesX.length; i++) {
+            if (basesX[i] <= this.bulbasaur.x + this.bulbasaur.width &&
+                basesX[i] + this.base.baseWidth >= this.bulbasaur.x &&
+                this.base.basesY + this.base.baseHeight >= this.bulbasaur.y &&
+                this.base.basesY <= this.bulbasaur.y + this.bulbasaur.height) {
+                        this.base.isHome[i] = true
+                        this.bulbasaur.sx = 0
+                        this.bulbasaur.x = 500
+                        this.bulbasaur.y = 650 
+                        return 
+                }
+        }
+        if (this.bulbasaur.y < 65) {
+            this.bulbasaur.sx = 0
+            this.bulbasaur.x = 500
+            this.bulbasaur.y = 650 
+        }
+    }
+
+    onBase() {
+        const basesX = Object.values(this.base.basesX)
+        let i;
+        for (i = 0; i < 5; i++) {
+            if (this.base.isHome[i]) {
+                const bulbasaur = new Image();
+                bulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/bulbasaur.png"
+                this.ctx.drawImage(bulbasaur, 23, 0, 23, 25, basesX[i], this.base.basesY, 55, 55)
+            }
+        }
     }
 
 

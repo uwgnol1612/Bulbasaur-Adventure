@@ -4,10 +4,12 @@ class Bulbasaur {
         this.dimensions = dimensions
         this.keyState = { upPressed:false, downPressed: false, rightPressed: false, leftPressed: false}
         this.moveDir = { up: true, down: true, left: true, right: true };
-        this.sx = 0
-        this.sy = 0
+        this.sx = 0;
+        this.sy = 0;
         this.x = 500;
-        this.y = 650
+        this.y = 650;
+        this.width = 50;
+        this.height = 50;
         
 
     }
@@ -15,7 +17,7 @@ class Bulbasaur {
     drawBulbasaur() {
         const bulbasaur = new Image();
         bulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/bulbasaur.png"
-        this.ctx.drawImage(bulbasaur, this.sx, this.sy, 23, 25, this.x, this.y, 50, 50)
+        this.ctx.drawImage(bulbasaur, this.sx, this.sy, 23, 25, this.x, this.y, this.width, this.height)
     }
 
     move() {

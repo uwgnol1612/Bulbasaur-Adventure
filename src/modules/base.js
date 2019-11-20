@@ -9,7 +9,8 @@ class Base {
                     }
         this.basesY = 10
         this.baseWidth = 60;
-        this.baseHeight = 55
+        this.baseHeight = 55;
+        this.isHome = [false, false, false, false, false]
     }
 
     drawBases() {
