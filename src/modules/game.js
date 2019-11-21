@@ -16,6 +16,7 @@ class BulbasaurAdventure {
         this.reset = this.reset.bind(this)
         this.play = true
         this.win = false
+        this.accident = []
     }
 
     drawBackground() {
@@ -141,10 +142,13 @@ class BulbasaurAdventure {
         this.drawGrass();
         this.base.drawBases();
         this.drawBush();
+
+        this.drawBlood();
      
         this.car.drawCars();
         this.car.moveCars();
         this.collision();
+       
         this.log.drawLogs();
         this.log.moveLogs();
         this.float();
@@ -169,6 +173,19 @@ class BulbasaurAdventure {
         document.addEventListener("keyup", this.bulbasaur.handleKeyUp.bind(this), false)
     }
 
+    drawBlood() {
+         const blood = new Image();
+         blood.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/blood.png"
+                
+        if (this.accident.length > 0) {
+            this.accident.forEach(coord => {
+                this.ctx.drawImage(blood, coord[0], coord[1], 50, 50)
+            })
+        }
+
+    }
+
+
 
     collision() {
         const carsX = Object.values(this.car.carsX)
@@ -176,10 +193,11 @@ class BulbasaurAdventure {
         
         let i;
         for (i = 0; i < carsX.length; i++ ) {
-            if (carsX[i] <= this.bulbasaur.x + 50 && 
+            if (carsX[i] <= this.bulbasaur.x + this.bulbasaur.width && 
                 carsX[i] + this.car.carWidth >= this.bulbasaur.x &&
-                carsY[i] + 50 >= this.bulbasaur.y &&
+                carsY[i] + this.bulbasaur.height >= this.bulbasaur.y &&
                 carsY[i] <= this.bulbasaur.y) {
+                this.accident.push([this.bulbasaur.x, this.bulbasaur.y])
                 this.reset()
                 this.lives --
             }
