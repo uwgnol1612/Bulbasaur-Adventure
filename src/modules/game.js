@@ -11,7 +11,11 @@ class BulbasaurAdventure {
         this.bulbasaur = new Bulbasaur(this.ctx, this.dimensions)
         this.log = new Log(this.ctx, this.dimensions)
         this.base = new Base(this.ctx)
+        this.lives = 5
         this.draw();
+        this.reset = this.reset.bind(this)
+        this.play = true
+        this.win = false
     }
 
     drawBackground() {
@@ -127,8 +131,13 @@ class BulbasaurAdventure {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
         this.registerEvents();
 
-        this.drawBackground();
+        if (!this.win) {
+            this.gameOver();
+        }
+
+        if (this.play) {
         
+        this.drawBackground();
         this.drawGrass();
         this.base.drawBases();
         this.drawBush();
@@ -146,6 +155,12 @@ class BulbasaurAdventure {
         this.reachBase();
         this.onBase();
 
+        this.drawLives();
+        this.victory();
+
+        }
+
+       
         requestAnimationFrame(this.draw.bind(this));
     }
 
@@ -165,9 +180,8 @@ class BulbasaurAdventure {
                 carsX[i] + this.car.carWidth >= this.bulbasaur.x &&
                 carsY[i] + 50 >= this.bulbasaur.y &&
                 carsY[i] <= this.bulbasaur.y) {
-                this.bulbasaur.sx = 0
-                this.bulbasaur.x = 500
-                this.bulbasaur.y = 650
+                this.reset()
+                this.lives --
             }
 
         }
@@ -210,9 +224,8 @@ class BulbasaurAdventure {
 
             } 
             if (this.bulbasaur.y < 320 && this.bulbasaur.y > 65) {
-                        this.bulbasaur.sx = 0
-                        this.bulbasaur.x = 500
-                        this.bulbasaur.y = 650 
+                        this.lives --
+                        this.reset() 
             }
        
     }
@@ -226,17 +239,21 @@ class BulbasaurAdventure {
                 this.base.basesY + this.base.baseHeight >= this.bulbasaur.y &&
                 this.base.basesY <= this.bulbasaur.y + this.bulbasaur.height) {
                         this.base.isHome[i] = true
-                        this.bulbasaur.sx = 0
-                        this.bulbasaur.x = 500
-                        this.bulbasaur.y = 650 
+                        this.reset()
                         return 
                 }
         }
         if (this.bulbasaur.y < 65) {
-            this.bulbasaur.sx = 0
-            this.bulbasaur.x = 500
-            this.bulbasaur.y = 650 
+            this.lives --
+            this.reset() 
         }
+    }
+
+    reset() {
+        this.bulbasaur.sx = 0
+        this.bulbasaur.x = 500
+        this.bulbasaur.y = 650 
+
     }
 
     onBase() {
@@ -251,9 +268,43 @@ class BulbasaurAdventure {
         }
     }
 
+    drawLives() {
+        const life = new Image();
+        life.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/lives_sprite.png"
+        this.ctx.drawImage(life, 0, 0, 297*(this.lives), 236, 30, 670, 36*(this.lives), 25)
+
+    }
+
 
     gameOver() {
+        if (this.lives === 0) {
+            this.play = false;
+            this.ctx.fillStyle = 'black'
+            this.ctx.fillRect(0, 0, 1090, 700)
+            const angeryBulbasaur = new Image();
+            angeryBulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/angry_bulbasaur.png"
+            this.ctx.drawImage(angeryBulbasaur, 500, 200, 120, 100)
+            this.ctx.fillStyle = 'white'
+            this.ctx.font = "30px Arcade"
+            this.ctx.fillText("Game  Over", 500, 350);
+
+        }
     
+    }
+
+    victory() {
+        
+        if (JSON.stringify(this.base.isHome) === JSON.stringify([true, true, true, true, true])) {
+            this.ctx.fillStyle = 'black'
+            this.ctx.fillRect(0, 0, 1090, 700)
+            this.ctx.fillStyle = "white"
+            this.ctx.font = "30px Arcade"
+            this.ctx.fillText("You  Won!", 500, 350);
+            const happyBulbasaur = new Image();
+            happyBulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/happy_bulbasaur.png"
+            this.ctx.drawImage(happyBulbasaur, 500, 200, 120, 120)
+            this.win = true
+        }
     }
 }
 

@@ -20,6 +20,7 @@
 
             this.carHeight = 90
             this.carWidth = 120
+            this.carSpeed = 2
 
         }
 
@@ -40,14 +41,14 @@
             ['carX1', 'carX2', 'carX5', 'carX6', 'carX9', 'carX10', 'carX3', 'carX4', 'carX7', 'carX8'].forEach(carX => {
                 if (['carX1', 'carX2', 'carX5', 'carX6', 'carX9', 'carX10'].includes(carX)) {
                     if (this.carsX[carX] < this.dimensions.width + 120) {
-                        this.carsX[carX] = this.carsX[carX] + 5
+                        this.carsX[carX] = this.carsX[carX] + this.carSpeed
                     } else {
                         this.carsX[carX] = -120
                         this.carSX[carX] = (Math.floor(Math.random() * 7)) * 95
                     }
                 } else {
                     if (this.carsX[carX] > -120) {
-                        this.carsX[carX] = this.carsX[carX] - 5
+                        this.carsX[carX] = this.carsX[carX] - this.carSpeed
                     } else {
                         this.carsX[carX] = this.dimensions.width + 120
                         this.carSX[carX] = 665 + (Math.floor(Math.random() * 7)) * 95
