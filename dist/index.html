@@ -15,16 +15,23 @@
     }
     body {
         display:flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
     canvas {
         background:white;
         border:1px solid black;
         margin-top: 100px;
     }
+
 </style>
-<body>    
-    <canvas id="game-canvas" width="1090" height="700"></canvas>   
+<body> 
+
+    <h2>Bulbasaur Adventure</h2> 
+    <div className="main">
+        <div>Use Arrow Keys to move bulbasaur and guide him to home!</div>  
+        <canvas id="game-canvas" width="1090" height="700"></canvas> 
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

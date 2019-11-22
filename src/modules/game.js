@@ -27,10 +27,12 @@ class BulbasaurAdventure {
         this.countdown = false
 
         this.accident = [];
+        this.paused = false
 
         this.music = new Sound("../src/assets/music/bgm.mp3")
         this.music.play()
 
+        this.render = this.render.bind(this)
         this.render()
 
     }
@@ -71,11 +73,15 @@ class BulbasaurAdventure {
         this.drawTime();
         this.drawScore();
 
-        this.victory();
+        this.victory();  
+        
 
         }
 
-        window.requestAnimationFrame(this.render.bind(this));
+        if (!this.paused) {
+            window.requestAnimationFrame(this.render.bind(this));
+        }
+        
     }
 
     registerEvents() {
@@ -287,6 +293,25 @@ class BulbasaurAdventure {
         }
     }
 
+    togglePause() {
+        this.paused = !this.paused
+        this.render()
+    }
+
+    handleKeyDown(e) {
+        switch(e.keyCode) {
+            case 80:
+                this.togglePause();
+                break;
+            case 82:
+                location.reload()
+        }
+    r}
+
+    
+
+
+ 
 }
 
 export default BulbasaurAdventure;

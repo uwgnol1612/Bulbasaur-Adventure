@@ -10,6 +10,10 @@ class Sound {
         this.sound.play()
     }
 
+    pause() {
+        this.sound.pause()
+    }
+
     stop() {
         this.sound.pause()
         this.sound.currentTime = 0;
