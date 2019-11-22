@@ -4,33 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <Link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Bulbasaur Adventure</title>
 </head>
-<style>
-    @font-face {
-        font-family: "Arcade";
-        src: url("../src/assets/fonts/arcadeclassic.ttf") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-    }
-    body {
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    canvas {
-        background:white;
-        border:1px solid black;
-        margin-top: 100px;
-    }
 
-</style>
-<body> 
-
-    <h2>Bulbasaur Adventure</h2> 
-    <div className="main">
-        <div>Use Arrow Keys to move bulbasaur and guide him to home!</div>  
+<body>
+    <h2 class="title">Bulbasaur Adventure</h2>
+    <section>
+        <div>
+            <a class='btn' href="#open-modal">How to Play</a>
+        </div>
+        <div>
+            <a href="#" >linkedIn</a>
+            <a href="#" >Github</a>
+        </div>
+    </section> 
+    <div class="canvas-container"> 
         <canvas id="game-canvas" width="1090" height="700"></canvas> 
+        <canvas id="intro-canvas" width="1090" height="700"></canvas>
+    </div>
+    <div id="open-modal" class="modal-content">
+        <div>
+            <a href="#" class="modal-close">&times;</a>
+            <div>
+                <img src="#"/>
+                <div>
+                    <div>
+                    <span>Move</span><img /> with Arrow Keys!
+                    </div>
+                    <div>
+                        <span>Guide</span><img /> safely across the street and river to home!
+                    </div>
+                    <div>Press P to pause the game</div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>

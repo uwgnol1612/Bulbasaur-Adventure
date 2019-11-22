@@ -1,0 +1,48 @@
+#intro-canvas {
+    z-index: 1;
+}
+
+#game-canvas {
+    z-index: 0
+}
+
+
+@font-face {
+    font-family: "Arcade";
+    src: url("../src/assets/fonts/arcadeclassic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    text-align: center;
+    height: 100vh;
+    background: url("https://we-camp-seeds.s3.us-east-2.amazonaws.com/bulbasaur_background.jpg");
+    background-repeat: no-repeat;
+}
+
+canvas {
+    background:white;
+    border:none;
+    margin: auto;
+    position: absolute;
+    left: 25%;
+    border:none;
+    box-shadow: 6px 6px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+.title {
+    font-family:'Permanent Marker', cursive;
+    font-size: 40px;
+    color: brown;
+    padding: 30px;
+    margin: auto;
+    margin-top: 10px
+}
+
+.canvas-container {
+    position: relative;
+}

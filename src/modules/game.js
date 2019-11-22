@@ -22,7 +22,7 @@ class BulbasaurAdventure {
 
         this.endTime = 0
 
-        this.play = true
+        this.play = false
         this.win = false
         this.countdown = false
 
@@ -31,9 +31,9 @@ class BulbasaurAdventure {
 
         this.music = new Sound("../src/assets/music/bgm.mp3")
         this.music.play()
-
-        this.render = this.render.bind(this)
+        this.handlePause();
         this.render()
+
 
     }
 
@@ -41,6 +41,7 @@ class BulbasaurAdventure {
     render() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
         this.registerEvents();
+        
 
         if (!this.win) {
             this.gameOver();
@@ -298,17 +299,45 @@ class BulbasaurAdventure {
         this.render()
     }
 
-    handleKeyDown(e) {
-        switch(e.keyCode) {
-            case 80:
-                this.togglePause();
-                break;
-            case 82:
-                location.reload()
-        }
-    r}
 
-    
+    handlePause() {
+        let that = this;
+        window.addEventListener("keydown", function(e) {
+            switch(e.keyCode) {
+            case 80:
+            that.togglePause();
+            break
+        }}, false)
+  
+    }
+
+
+    start() {
+        this.play = true
+    }
+
+
+    restart() {
+        this.board = new Board(this.ctx, this.dimensions)
+        this.car = new Car(this.ctx, this.dimensions)
+        this.bulbasaur = new Bulbasaur(this.ctx, this.dimensions)
+        this.log = new Log(this.ctx, this.dimensions)
+        this.base = new Base(this.ctx)
+        
+        this.lives = 5
+        this.score = 0
+        this.time = 60000
+
+        this.endTime = 0
+
+        this.play = true
+        this.win = false
+        this.countdown = false
+
+        this.accident = [];
+        this.paused = false
+
+    }
 
 
  
