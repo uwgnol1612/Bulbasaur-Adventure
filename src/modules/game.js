@@ -27,6 +27,12 @@ class BulbasaurAdventure {
         this.countdown = false
 
         this.accident = [];
+
+        this.music = new Sound("../src/assets/music/bgm.mp3")
+        this.music.play()
+
+        this.render()
+
     }
 
     
@@ -238,16 +244,10 @@ class BulbasaurAdventure {
         
     }
 
-    startGame() {
-        this.render();
-        const bgm = new Sound("../src/assets/music/bgm.mp3")
-        bgm.play();
-    }
-
 
     gameOver() {
-        if (this.lives === 0) {      
-                         
+        if (this.lives === 0) {
+            this.music.stop()                           
             this.ctx.fillStyle = 'black'
             this.ctx.fillRect(0, 0, 1090, 700)
             const angeryBulbasaur = new Image();
@@ -255,7 +255,8 @@ class BulbasaurAdventure {
             this.ctx.drawImage(angeryBulbasaur, 505, 200, 120, 100)
             this.ctx.fillStyle = 'white'
             this.ctx.font = "30px Arcade"
-            this.ctx.fillText("Game  Over", 500, 350);
+            this.ctx.fillText("Game   Over", 500, 350);
+            this.ctx.fillText("Press   R   to   try   again  !", 420, 400)
             if (this.play) {
             const game_over = new Sound("../src/assets/music/game_over.mp3") 
             game_over.play() 
@@ -269,6 +270,7 @@ class BulbasaurAdventure {
     victory() {
         
         if (JSON.stringify(this.base.isHome) === JSON.stringify([true, true, true, true, true])) {
+            this.music.stop() 
             this.ctx.fillStyle = 'black'
             this.ctx.fillRect(0, 0, 1090, 700)
             this.ctx.fillStyle = "white"

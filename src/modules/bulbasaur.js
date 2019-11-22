@@ -32,7 +32,9 @@ class Bulbasaur {
         }
         if (!this.keyState['upPressed']) {
             this.moveDir['up'] = true
+            
         }
+        
         if (this.keyState['downPressed'] && this.moveDir['down'] && this.y < this.dimensions.height - 50) {
             this.y = this.y + 30;
             this.moveDir['down'] = false
@@ -42,6 +44,7 @@ class Bulbasaur {
         }
         if (!this.keyState['downPressed']) {
             this.moveDir['down'] = true
+
         }
         if (this.keyState['leftPressed'] && this.moveDir['left'] && this.x > 15) {
             this.x = this.x - 30;
