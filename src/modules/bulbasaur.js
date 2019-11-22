@@ -1,3 +1,5 @@
+import Sound from './sound'
+
 class Bulbasaur {
     constructor(ctx, dimensions) {
         this.ctx = ctx
@@ -25,6 +27,8 @@ class Bulbasaur {
             this.y = this.y - 30;
             this.moveDir['up'] = false
             this.sx = 0
+            const move = new Sound("../src/assets/music/move.mp3") 
+            move.play()  
         }
         if (!this.keyState['upPressed']) {
             this.moveDir['up'] = true
@@ -33,6 +37,8 @@ class Bulbasaur {
             this.y = this.y + 30;
             this.moveDir['down'] = false
             this.sx = 23
+            const move = new Sound("../src/assets/music/move.mp3") 
+            move.play()  
         }
         if (!this.keyState['downPressed']) {
             this.moveDir['down'] = true
@@ -41,6 +47,8 @@ class Bulbasaur {
             this.x = this.x - 30;
             this.moveDir['left'] = false
             this.sx = 46
+            const move = new Sound("../src/assets/music/move.mp3") 
+            move.play()  
         }
         if (!this.keyState['leftPressed']) {
             this.moveDir['left'] = true
@@ -50,6 +58,8 @@ class Bulbasaur {
             this.x = this.x + 30;
             this.moveDir['right'] = false
             this.sx = 69
+            const move = new Sound("../src/assets/music/move.mp3") 
+            move.play()  
         }
         if (!this.keyState['rightPressed']) {
             this.moveDir['right'] = true
