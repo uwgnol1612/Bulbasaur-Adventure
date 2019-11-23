@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/game */ \"./src/modules/game.js\");\n\n\nconst introCanvas = document.getElementById('intro-canvas');\nconst introCtx = introCanvas.getContext('2d')\n\n// const introBackground\n\n// introCtx.drawImage()\n\n\nconst canvas = document.getElementById('game-canvas');\nconst game = new _modules_game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas)\n\nconst handleKeyDown = (e) => {\n        switch(e.keyCode) {\n        case 82:\n            game.restart();\n        case 83:\n            introCanvas.classList.add(\"hidden\")\n            game.start()\n            \n    }\n\n}\n\nwindow.addEventListener(\"keydown\", handleKeyDown, false)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/game */ \"./src/modules/game.js\");\n\n\nconst canvas = document.getElementById('game-canvas');\nconst game = new _modules_game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas)\n\nconst handleKeyDown = (e) => {\n        switch(e.keyCode) {\n        case 82:\n            game.restart();\n        case 83:\n            const intro = document.getElementById('intro')\n            intro.classList.add(\"hidden\")\n            game.start()\n            \n    }\n\n}\n\nwindow.addEventListener(\"keydown\", handleKeyDown, false)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 

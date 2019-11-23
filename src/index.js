@@ -1,13 +1,5 @@
 import BulbasaurAdventure from './modules/game'
 
-const introCanvas = document.getElementById('intro-canvas');
-const introCtx = introCanvas.getContext('2d')
-
-// const introBackground
-
-// introCtx.drawImage()
-
-
 const canvas = document.getElementById('game-canvas');
 const game = new BulbasaurAdventure(canvas)
 
@@ -16,7 +8,8 @@ const handleKeyDown = (e) => {
         case 82:
             game.restart();
         case 83:
-            introCanvas.classList.add("hidden")
+            const intro = document.getElementById('intro')
+            intro.classList.add("hidden")
             game.start()
             
     }

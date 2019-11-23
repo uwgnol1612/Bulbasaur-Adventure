@@ -4,43 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <Link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <Link rel="stylesheet" href="../src/assets/css/index.css">
+    <link rel="stylesheet" href="../src/assets/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    
     <title>Bulbasaur Adventure</title>
 </head>
 
 <body>
     <h2 class="title">Bulbasaur Adventure</h2>
-    <section>
-        <div>
-            <a class='btn' href="#open-modal">How to Play</a>
-        </div>
-        <div>
-            <a href="#" >linkedIn</a>
-            <a href="#" >Github</a>
-        </div>
-    </section> 
+    <section class="main">
     <div class="canvas-container"> 
         <canvas id="game-canvas" width="1090" height="700"></canvas> 
-        <canvas id="intro-canvas" width="1090" height="700"></canvas>
-    </div>
-    <div id="open-modal" class="modal-content">
-        <div>
-            <a href="#" class="modal-close">&times;</a>
+        <div id="intro">
+            <img src="https://we-camp-seeds.s3.us-east-2.amazonaws.com/bulbasaur_instruction.gif"/>
             <div>
-                <img src="#"/>
-                <div>
-                    <div>
-                    <span>Move</span><img /> with Arrow Keys!
-                    </div>
-                    <div>
-                        <span>Guide</span><img /> safely across the street and river to home!
-                    </div>
-                    <div>Press P to pause the game</div>
-                </div>
+                <h1 class="blinking">Press &nbsp; S &nbsp; to &nbsp; Start</h1>
+                <h1 class="blinking"> See &nbsp; Instructions &nbsp;  above</h1>
             </div>
         </div>
     </div>
+    <div class="info-section">
+        <div class="instruction">
+            <li>Guide &nbsp; <img src="https://we-camp-seeds.s3.us-east-2.amazonaws.com/up.png" />&nbsp; to &nbsp; home &nbsp; <img src="https://we-camp-seeds.s3.us-east-2.amazonaws.com/home_sprite.png" /></li>
+            <li>Use &nbsp; <img id="arrow-key" src="https://we-camp-seeds.s3.us-east-2.amazonaws.com/arrow_keys.png"/>&nbsp;&nbsp;to &nbsp; move <img src="https://we-camp-seeds.s3.us-east-2.amazonaws.com/up.png"/></li>
+            <li>Press &nbsp; P &nbsp; to &nbsp; Pause</li>
+        </div>
+        <h1>Created by Long McFarlin</h1>
+        <div class="nav-links">
+            <a href="https://github.com/uwgnol1612">
+                <i class="fab fa-github" style="font-size: 40px; color: cadetblue;"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/long-mcfarlin-7bb60994/">
+                <i class="fab fa-linkedin" style="font-size: 40px; color:cadetblue"></i>
+            </a>
+        </div>
+    </div>
+    </section>
     <script src="main.js"></script>
 </body>
 </html>
