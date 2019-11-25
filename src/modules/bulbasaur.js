@@ -39,7 +39,7 @@ class Bulbasaur {
             
         }
 
-        if (this.keyState['downPressed'] && this.moveDir['down'] && this.y < this.dimensions.height - 50) {
+        if (this.keyState['downPressed'] && this.moveDir['down'] && this.y < this.dimensions.height - this.width) {
             this.y = this.y + this.speed;
             this.moveDir['down'] = false
             this.sx = 23
@@ -50,7 +50,7 @@ class Bulbasaur {
             this.moveDir['down'] = true
 
         }
-        if (this.keyState['leftPressed'] && this.moveDir['left'] && this.x > 15) {
+        if (this.keyState['leftPressed'] && this.moveDir['left'] && this.x > 0) {
             this.x = this.x - this.speed;
             this.moveDir['left'] = false
             this.sx = 46
@@ -61,7 +61,7 @@ class Bulbasaur {
             this.moveDir['left'] = true
         }
 
-        if (this.keyState['rightPressed'] && this.moveDir['right'] && this.x < this.dimensions.width - 50) {
+        if (this.keyState['rightPressed'] && this.moveDir['right'] && this.x < this.dimensions.width - this.width) {
             this.x = this.x + this.speed;
             this.moveDir['right'] = false
             this.sx = 69
