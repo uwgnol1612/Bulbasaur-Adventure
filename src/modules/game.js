@@ -18,21 +18,20 @@ class BulbasaurAdventure {
         
         this.lives = 5
         this.score = 0
+        this.highScore = 1000
         this.time = 60000
-
         this.endTime = 0
 
         this.play = false
         this.win = false
         this.countdown = false
 
-        this.accident = [];
+        this.accident = []
         this.paused = false
 
-        this.music = new Sound("../src/assets/music/bgm.mp3")
-        this.music.play()
+        this.registerEvents();
         this.handlePause();
-        this.render()
+        this.render();
 
 
     }
@@ -40,15 +39,12 @@ class BulbasaurAdventure {
     
     render() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
-        this.registerEvents();
-        
-
+       
         if (!this.win) {
             this.gameOver();
         }
 
-        if (this.play) {
-        
+        if (this.play) {       
         this.board.drawBackground();
         this.board.drawGrass();
         this.base.drawBases();
@@ -75,8 +71,6 @@ class BulbasaurAdventure {
         this.drawScore();
 
         this.victory();  
-        
-
         }
 
         if (!this.paused) {
@@ -87,7 +81,7 @@ class BulbasaurAdventure {
 
     registerEvents() {
         document.addEventListener("keydown", this.bulbasaur.handleKeyDown.bind(this), false);
-        document.addEventListener("keyup", this.bulbasaur.handleKeyUp.bind(this), false)
+        document.addEventListener("keyup", this.bulbasaur.handleKeyUp.bind(this), false);
     }
 
     drawBlood() {
@@ -98,14 +92,14 @@ class BulbasaurAdventure {
             this.accident.forEach(coord => {
                 this.ctx.drawImage(blood, coord[0], coord[1], 50, 50)
             })
-        }
+        };
 
     }
 
 
     collision() {
-        const carsX = Object.values(this.car.carsX)
-        const carsY = Object.values(this.car.carsY)
+        const carsX = Object.values(this.car.carsX);
+        const carsY = Object.values(this.car.carsY);
         
         let i;
         for (i = 0; i < carsX.length; i++ ) {
@@ -214,7 +208,7 @@ class BulbasaurAdventure {
     drawLives() {
         const life = new Image();
         life.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/lives_sprite.png"
-        this.ctx.drawImage(life, 0, 0, 297*(this.lives), 236, 50, 670, 36*(this.lives), 25)
+        this.ctx.drawImage(life, 0, 0, 297*(this.lives), 236, 30, 665, 36*(this.lives), 25)
 
     }
 
@@ -224,7 +218,7 @@ class BulbasaurAdventure {
             const time = Math.floor((this.time / 60000) * 60)
             this.ctx.fillStyle = '#54B948'
             this.ctx.font = '30px Arcade'
-            this.ctx.fillText(`Time:   ${time}`, 700, 685)
+            this.ctx.fillText(`Time:   ${time}`, 250, 685)
             if (!this.countdown && this.time < 6000) {
                 const clock = new Sound("../src/assets/music/clock.mp3")
                 clock.play()
@@ -246,15 +240,24 @@ class BulbasaurAdventure {
         this.score = count * 200 + this.endTime * 20
         this.ctx.fillStyle = '#54B948'
         this.ctx.font = '30px Arcade'
-        this.ctx.fillText(`Score:   ${this.score}`, 900, 685)
+        this.ctx.fillText(`Score:   ${this.score}`, 650, 685)
 
-        
+        if (window.localStorage['highScore']) {
+            this.highScore= window.localStorage['highScore']
+        }
+        this.ctx.fillText(`High  Score:   ${this.highScore}`, 840, 685)
+    }
+
+    recordScore() {
+        if (this.score > this.highScore) {
+            localStorage['highScore'] = this.score;
+        }
     }
 
 
     gameOver() {
         if (this.lives === 0) {
-            this.music.stop()                           
+                                     
             this.ctx.fillStyle = 'black'
             this.ctx.fillRect(0, 0, 1090, 700)
             const angeryBulbasaur = new Image();
@@ -264,10 +267,14 @@ class BulbasaurAdventure {
             this.ctx.font = "30px Arcade"
             this.ctx.fillText("Game   Over", 500, 350);
             this.ctx.fillText("Press   R   to   try   again  !", 420, 400)
+            
             if (this.play) {
             const game_over = new Sound("../src/assets/music/game_over.mp3") 
             game_over.play() 
             } 
+
+            this.score = this.score + this.lives * 500
+            this.recordScore()
             this.play = false;  
   
         }
@@ -277,7 +284,7 @@ class BulbasaurAdventure {
     victory() {
         
         if (JSON.stringify(this.base.isHome) === JSON.stringify([true, true, true, true, true])) {
-            this.music.stop() 
+            
             this.ctx.fillStyle = 'black'
             this.ctx.fillRect(0, 0, 1090, 700)
             this.ctx.fillStyle = "white"
@@ -286,10 +293,13 @@ class BulbasaurAdventure {
             const happyBulbasaur = new Image();
             happyBulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/happy_bulbasaur.png"
             this.ctx.drawImage(happyBulbasaur, 500, 180, 120, 120)
+            
             if (!this.win) {
             const new_life = new Sound("../src/assets/music/new_life.mp3") 
             new_life.play() 
             } 
+
+            this.recordScore()
             this.win = true
         }
     }

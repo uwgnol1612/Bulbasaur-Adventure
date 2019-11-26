@@ -13,14 +13,31 @@
                             carX9: 500,
                             carX10: 500 + Math.ceil(Math.random()*7)*120          
             }
-            this.carsY = { carY1: 360, carY2: 360, carY3: 410, carY4: 410, carY5: 460, carY6: 460, carY7: 520, carY8: 520, carY9: 570, carY10: 570
-            };
-            this.carSX = { carX1: 0, carX2: 95, carX3: 665, carX4: 760, carX5: 190, carX6: 285, carX7: 855, carX8: 950, carX9: 380, carX10: 475 
+            this.carsY = {  carY1: 360, 
+                            carY2: 360, 
+                            carY3: 410, 
+                            carY4: 410, 
+                            carY5: 460, 
+                            carY6: 460, 
+                            carY7: 520, 
+                            carY8: 520, 
+                            carY9: 570, 
+                            carY10: 570
             }
-
+            this.carSX = {  carX1: 0,
+                            carX2: 95, 
+                            carX3: 665, 
+                            carX4: 760, 
+                            carX5: 190, 
+                            carX6: 285, 
+                            carX7: 855, 
+                            carX8: 950, 
+                            carX9: 380, 
+                            carX10: 475 
+            }
             this.carHeight = 90
             this.carWidth = 120
-            this.carSpeed = 2
+            this.carSpeed = 3 + Math.floor(Math.random() * 3)
 
         }
 
@@ -37,28 +54,25 @@
             
 
         moveCars() {
-
             ['carX1', 'carX2', 'carX5', 'carX6', 'carX9', 'carX10', 'carX3', 'carX4', 'carX7', 'carX8'].forEach(carX => {
                 if (['carX1', 'carX2', 'carX5', 'carX6', 'carX9', 'carX10'].includes(carX)) {
-                    if (this.carsX[carX] < this.dimensions.width + 120) {
+                    if (this.carsX[carX] < this.dimensions.width + this.carWidth) {
                         this.carsX[carX] = this.carsX[carX] + this.carSpeed
                     } else {
-                        this.carsX[carX] = -120
+                        this.carsX[carX] = -this.carWidth
                         this.carSX[carX] = (Math.floor(Math.random() * 7)) * 95
                     }
                 } else {
-                    if (this.carsX[carX] > -120) {
+                    if (this.carsX[carX] > -this.carWidth) {
                         this.carsX[carX] = this.carsX[carX] - this.carSpeed
                     } else {
-                        this.carsX[carX] = this.dimensions.width + 120
+                        this.carsX[carX] = this.dimensions.width + this.carWidth
                         this.carSX[carX] = 665 + (Math.floor(Math.random() * 7)) * 95
 
                     }
                     
                 } 
             })
-
-
 
         }
 
