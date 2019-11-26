@@ -2,6 +2,40 @@ class Board {
     constructor(ctx, dimensions) {
         this.ctx = ctx;
         this.dimensions = dimensions
+        this.roadPosY = [429, 483, 537, 591]
+        this.grassPos = this.generateGrassPos()
+        debugger
+    }
+
+    drawRoadEdge(posY) {
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, posY);
+        this.ctx.lineTo(this.dimensions.width, posY);
+        this.ctx.strokeStyle = "white";
+        this.ctx.setLineDash([100, 5]);
+        this.ctx.lineWidth = 5;
+        this.ctx.stroke();
+    }
+
+    drawRoadLines() {
+        this.roadPosY.forEach(posY => {
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, posY);
+            this.ctx.lineTo(this.dimensions.width, posY);
+            this.ctx.strokeStyle = "white";
+            this.ctx.setLineDash([50, 30]);
+            this.ctx.lineWidth = 2;
+            this.ctx.stroke();
+        })
+  
+    }
+
+    generateGrassPos() {
+        const grassPos = []
+        for (let i = 0; i < 20; i++) {
+            grassPos.push([Math.random()*this.dimensions.width, [335, 645][Math.floor(Math.random()*2)]])
+        }
+        return grassPos;
     }
 
     drawBackground() {
@@ -16,57 +50,13 @@ class Board {
         this.ctx.fillStyle = '#474a51'
         this.ctx.fillRect(0, 360, this.dimensions.width, 300)
 
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 375);
-        this.ctx.lineTo(this.dimensions.width, 375);
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([100, 5]);
-        this.ctx.lineWidth = 5;
-        this.ctx.stroke();
+        this.drawRoadEdge(375);
+        this.drawRoadEdge(645);
 
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 645);
-        this.ctx.lineTo(this.dimensions.width, 645);
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([100, 5]);
-        this.ctx.lineWidth = 5;
-        this.ctx.stroke();
-
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 429);
-        this.ctx.lineTo(this.dimensions.width, 429);
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([50, 30]);
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
-
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 483);
-        this.ctx.lineTo(this.dimensions.width, 483);
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([50, 30]);
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
-
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 537);
-        this.ctx.lineTo(this.dimensions.width, 537);
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([50, 30]);
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
-
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 591);
-        this.ctx.lineTo(this.dimensions.width, 591);
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([50, 30]);
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
+        this.drawRoadLines();
 
         this.ctx.fillStyle = "#0c7ecf"
         this.ctx.fillRect(0, 65, this.dimensions.width, 270)
-
     }
 
     drawBush() {   
@@ -96,20 +86,10 @@ class Board {
     drawGrass() {
         const grass = new Image();
         grass.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/grass_sprite.png"
-        this.ctx.drawImage(grass, 100, 335, 35, 30)
-        this.ctx.drawImage(grass, 130, 335, 35, 30)
-        this.ctx.drawImage(grass, 300, 335, 35, 30)
-        this.ctx.drawImage(grass, 400, 335, 35, 30)
-        this.ctx.drawImage(grass, 700, 335, 35, 30)
-        this.ctx.drawImage(grass, 900, 335, 35, 30)
-        this.ctx.drawImage(grass, 120, 645, 35, 30)
-        this.ctx.drawImage(grass, 180, 645, 35, 30)
-        this.ctx.drawImage(grass, 350, 645, 35, 30)
-        this.ctx.drawImage(grass, 600, 645, 35, 30)
-        this.ctx.drawImage(grass, 630, 645, 35, 30)
-        this.ctx.drawImage(grass, 650, 645, 35, 30)
-        this.ctx.drawImage(grass, 750, 645, 35, 30)
-        this.ctx.drawImage(grass, 950, 645, 35, 30)
+
+        this.grassPos.forEach(pos => {
+            this.ctx.drawImage(grass, pos[0], pos[1], 35, 30)
+        })
     }
 
 }

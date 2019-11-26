@@ -33,22 +33,20 @@ class BulbasaurAdventure {
         this.handlePause();
         this.render();
 
-
     }
 
     
     render() {
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
-       
         if (!this.win) {
             this.gameOver();
         }
 
-        if (this.play) {       
+        if (this.play) {    
         this.board.drawBackground();
         this.board.drawGrass();
         this.base.drawBases();
-        this.board.drawBush();
+        this.board.drawBush();   
 
         this.drawBlood();
      
