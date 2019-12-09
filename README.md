@@ -16,7 +16,7 @@ Bulbasaur Adventure is a JavaScript implementation of a classic arcade game Frog
 
 ### How to Play
 
-Use 4 arrow keys to guide the bulbasaur home. Carefully navigate the bulbasaur across the street avoiding being hit by vehicles and move swiftly among the logs to cross the river. Press `P` to pause/continue the game.
+Use arrow keys &#8592; &#8593; &#8594; &#8595; to guide the bulbasaur to 'home'. Carefully navigate the bulbasaur across the street avoiding roadkill and move swiftly among the logs to cross the river. Press `P` to pause/continue the game.
 
 ### Features
 
