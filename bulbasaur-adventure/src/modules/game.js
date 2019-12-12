@@ -288,6 +288,7 @@ class BulbasaurAdventure {
             this.ctx.fillStyle = "white"
             this.ctx.font = "30px Arcade"
             this.ctx.fillText("You  Won!", 500, 350);
+            this.ctx.fillText("Press   R   to   play   again", 400, 400)
             const happyBulbasaur = new Image();
             happyBulbasaur.src = "https://we-camp-seeds.s3.us-east-2.amazonaws.com/happy_bulbasaur.png"
             this.ctx.drawImage(happyBulbasaur, 500, 180, 120, 120)
@@ -344,7 +345,6 @@ class BulbasaurAdventure {
 
         this.accident = [];
         this.paused = false
-
     }
 
 

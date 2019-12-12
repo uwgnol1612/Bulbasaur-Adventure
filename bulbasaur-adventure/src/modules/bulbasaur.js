@@ -75,6 +75,7 @@ class Bulbasaur {
 
 
     handleKeyDown(e) {
+        e.preventDefault();
        
         if (e.keyCode === KEYCODES.up) {
             this.bulbasaur.keyState['upPressed'] = true;
@@ -91,6 +92,8 @@ class Bulbasaur {
     }
 
     handleKeyUp(e) {
+        e.preventDefault();
+        
         if (e.keyCode === KEYCODES.up){
             this.bulbasaur.keyState['upPressed'] = false;
         }

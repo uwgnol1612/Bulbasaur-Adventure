@@ -4,7 +4,6 @@ class Board {
         this.dimensions = dimensions
         this.roadPosY = [429, 483, 537, 591]
         this.grassPos = this.generateGrassPos()
-        debugger
     }
 
     drawRoadEdge(posY) {

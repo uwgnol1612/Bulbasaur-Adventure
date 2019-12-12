@@ -71,9 +71,8 @@ body {
 }
 
 @keyframes blinkingText {
-     0%{     color: black;    }
-    50%{    color: transparent; } 
-    100%{   color: black;    }
+    from { opacity: 1;}
+    to { opacity: 0;} 
 }
 
 .main {
