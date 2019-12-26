@@ -131,11 +131,11 @@ class BulbasaurAdventure {
                     logsY[i] <= this.bulbasaur.y) {
                         
                         if (['logX1', 'logX2'].includes(logsXKeys[i])) {
-                            if (this.bulbasaur.x < this.dimensions.width - 50) {
+                            if (this.bulbasaur.x < this.dimensions.width - this.bulbasaur.width) {
                                 this.bulbasaur.x = this.bulbasaur.x + this.log.mediumSpeed }
                                 return 
                         } else if (['logX5', 'logX6'].includes(logsXKeys[i])) {
-                            if (this.bulbasaur.x < this.dimensions.width - 50) {
+                            if (this.bulbasaur.x < this.dimensions.width - this.bulbasaur.height) {
                                 this.bulbasaur.x = this.bulbasaur.x + this.log.lowSpeed }
                                 return 
                         } else if (['logX3', 'logX4'].includes(logsXKeys[i])) {
